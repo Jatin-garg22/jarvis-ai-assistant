@@ -71,7 +71,7 @@ Jarvis is a simple personal assistant for Linux, MacOS and Windows which works o
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/jatingarg/jarvis-ai-assistant
+   git clone https://github.com/Jatin-garg22/jarvis-ai-assistant
    ```
 
 2. **Run the installer**
