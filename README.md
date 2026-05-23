@@ -1,6 +1,5 @@
 # Jarvis
 
-[![Build Status](https://travis-ci.org/sukeesh/Jarvis.svg?branch=master)](https://travis-ci.org/sukeesh/Jarvis) [![Join the chat at https://gitter.im/Sukeesh_Jarvis/Lobby](https://badges.gitter.im/Sukeesh_Jarvis/Lobby.svg)](https://gitter.im/Sukeesh_Jarvis/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A Personal Non-AI Assistant for Linux, MacOS and Windows
 
@@ -72,7 +71,7 @@ Jarvis is a simple personal assistant for Linux, MacOS and Windows which works o
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/sukeesh/Jarvis.git
+   git clone https://github.com/jatingarg/jarvis-ai-assistant
    ```
 
 2. **Run the installer**
@@ -205,7 +204,7 @@ Run with docker (docker needs to be installed and running):
 
  **sukeesh**
 
-See also the list of [contributors](https://github.com/sukeesh/Jarvis/graphs/contributors) who have participated in this project.
+See also the list of [contributors](https://github.com/Jatin-garg22/Jarvis-ai-assistant/graphs/contributors) who have participated in this project.
 
 ## License
 
