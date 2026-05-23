@@ -204,7 +204,7 @@ Run with docker (docker needs to be installed and running):
 
  **sukeesh**
 
-See also the list of [contributors](https://github.com/Jatin-garg22/Jarvis-ai-assistant/graphs/contributors) who have participated in this project.
+See also the list of [contributors](https://github.com/Jatin-garg22/jarvis-ai-assistant/graphs/contributors) who have participated in this project.
 
 ## License
 
