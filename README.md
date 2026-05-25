@@ -1,211 +1,124 @@
-# Jarvis
+﻿# Jarvis
 
+Jarvis is a command-line personal assistant built for this repository. It uses a plugin-based architecture and a lightweight installer to prepare the environment.
 
-A Personal Non-AI Assistant for Linux, MacOS and Windows
+## Repository
 
-![Jarvis](http://i.imgur.com/xZ8x9ES.jpg)
+Current GitHub repository:
 
-Jarvis is a simple personal assistant for Linux, MacOS and Windows which works on the command line. He can talk to you if you enable his voice. He can tell you the weather, he can find restaurants and other places near you. He can do some great stuff for you.
+- https://github.com/Jatin-garg22/jarvis-ai-assistant.git
 
-## 🚀 15+ Different Tasks That Jarvis Can Do For You:
+## What this project contains
 
-1. **Entertainment & Suggestions**
-   - Suggest activities if you're bored (`activity`, `bored`)
-   - Provide ideas on what to draw, watch, or listen to (`prompt`, `top_media`, `taste dive`, `mood music`)
+### Core application
 
-2. **Sports Updates**
-   - Get up-to-date sports information: team rankings, match times, player stats (`basketball`, `cricket`, `soccer`, `tennis`)
+- `jarviscli/` — main application code, command interpreter, and plugin loader
+- `custom/` — place your own plugins here
+- `installer/` — setup scripts and dependency installation flow
 
-3. **Games**
-   - Play games: Blackjack, Connect Four, Hangman, Rock-Paper-Scissors, etc. (`blackjack`, `connect_four`, `guess_number_game`, `hangman`, `rockpaperscissors`, `roulette`, `tic_tac_toe`, `word_game`, `wordle`)
+### Setup scripts
 
-4. **Health & Fitness**
-   - Access nutrition facts, recipes, workout programs, and health trackers (`bmi`, `bmr`, `calories`, `food recipe`, `fruit`, `fruit nutrition`, `workout`)
+- `setup.bat` — Windows setup entry point
+- `setup.sh` — Linux/macOS setup entry point
 
-5. **Cocktail Recipes**
-   - Learn how to make cocktails (`cocktail`, `drink`)
+## Supported commands in this version
 
-6. **Random Generators**
-   - Generate random lists, numbers, passwords (`random list`, `random number`, `random password`)
+The current runtime only enables the commands that are allowed by the plugin manager. The active commands are:
 
-7. **Unit Conversions**
-   - Convert units: binary, currency, hex, length, mass, speed, temperature, time (`binary`, `currencyconv`, `hex`, `lengthconv`, `massconv`, `speedconv`, `string_convert`, `tempconv`, `timeconv`)
+- `weather`
+- `news`
+- `search`
+- `gmail`
+- `dictionary`
+- `clock`
+- `timer`
+- `website`
+- `qr`
+- `wifi`
+- `tasks`
+- `battery`
+- `location`
+- `open`
+- `play`
+- `hear`
 
-8. **Photography**
-   - Take pictures and screenshots (`open camera`, `screencapture`)
+## Installation
 
-9. **System Information**
-   - Get computer specifications (`battery`, `cat his`, `dns forward`, `dns reverse`, `hostinfo`, `ip`, `scan_network`, `speedtest`, `os`, `check ram`, `systeminfo`)
+### 1. Clone the repository
 
-10. **File Management**
-    - Manage and organize files (`file manage`, `file organize`)
-
-11. **Image Processing**
-    - Upload, edit, and convert images (`imgur`, `image to pdf`, `image compressor`)
-
-12. **PDF Conversion**
-    - Convert webpages to PDF or PDFs to images (`htmltopdf`, `pdf to images`)
-
-13. **Jokes & Facts**
-    - Enjoy jokes and random facts (`dadjoke`, `joke daily`, `joke chuck`, `joke`, `fact`, `cat fact`)
-
-14. **Calculations**
-    - Perform calculations and solve equations (`calculate`, `factor`, `solve`, `equations`, `plot`, `matrix add`)
-
-15. **QR Code Generation**
-    - Generate QR codes for URLs (`qr`)
-
-16. **Weather Updates**
-    - Check the weather forecast (`weather report`)
-
-17. **Language Translation**
-    - Translate languages (`translate`)
-
-18. **Stock Market Information**
-    - Display stock and cryptocurrency information (`stock`, `cryptotracker`)
-
-## 🛠️ Getting Started
-
-### Installation
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/Jatin-garg22/jarvis-ai-assistant
-   ```
-
-2. **Run the installer**
-   ```bash
-   python installer
-   ```
-   If that doesn't work, try:
-   ```bash
-   python3 installer
-   ```
-
-### Running Jarvis
-
-- Run Jarvis from anywhere:
-  
-   ```bash
-   jarvis
-   ```
-
-  Or from within the project folder:
-  
-   ```bash
-   ./jarvis
-   ```
-
-You can start by typing `help` within the Jarvis command line to check what Jarvis can do for you.
-
-## ❓Frequently encountered issues
-**Question**: 
-When I run Jarvis, it shows an error relating to module not found<br>
-
-**Platform**: 
-Windows<br>
-
-**Solution 1**: Uninstall and/or install the module package.<br>
-
-**Example:**<br>
-Error: `ImportError: DLL load failed while importing win32api: The specified module could not be found.`<br>
-
-**Solution:**<br>
-`pip uninstall pywin32`<br>
-`pip install pywin32` or `conda install pywin32`<br>
-
-**Solution 2**: add the package to your environment variables system PATH.<br>
-
------
-
-**Question**: After cloning the repo in terminal it gives an error when running python3 installer saying please install virtual environemnt.
-
-**Solution**: 
-- Install virtual env using this command:
-  ```bash
-  python3 -m pip install virtualenv
-  ```
-- OR: On Linux use package manager (e.g. Ubuntu sudo apt install python3-venv)
-  
-- Restart Installer
-
------
-
-**If you find other issues and/or have found solutions to them on any platform, please consider adding to this list!**
-
-## 💻 Youtube Video Showing Jarvis
-
-[Click here](https://www.youtube.com/watch?v=PR-nxqmG3V8)
-
-## 🤝 Contributing
-
-Check out our [CONTRIBUTING.md](CONTRIBUTING.md) to learn how you can contribute!
-
-### QuickStart: Create a new feature (plugin)
-
-Create new file custom/hello_world.py
-
+```bash
+git clone https://github.com/Jatin-garg22/jarvis-ai-assistant.git
+cd Jarvis-master
 ```
+
+### 2. Run the setup script
+
+#### Windows
+
+```bat
+setup.bat
+```
+
+#### Linux / macOS
+
+```bash
+./setup.sh
+```
+
+### 3. Run the installer directly (optional)
+
+```bash
+python installer
+```
+
+## Running the assistant
+
+From the project root, use a single command:
+
+```bat
+run.bat
+```
+
+This launcher uses the local virtual environment and starts the CLI without extra setup steps.
+
+## How to add your own plugin
+
+Create a new Python file inside `custom/` and add a plugin decorator.
+
+```python
 from plugin import plugin
 
 
 @plugin("helloworld")
 def helloworld(jarvis, s):
-    """Repeats what you type"""
+    """Repeats what the user types."""
     jarvis.say(s)
 ```
 
-Check it out!
-```
-./jarvis
-Jarvis' sound is by default disabled.
-In order to let Jarvis talk out loud type: enable sound
-Type 'help' for a list of available actions.
+After adding the file, start Jarvis and use the command name you defined.
 
-~> Hi, what can I do for you?
-helloworld Jarvis is cool!
-jarvis is cool
-```
+## Project notes
 
-### Plugins
+- This README reflects the current code layout and the current active command set.
+- Unused command files were removed from `jarviscli/plugins/`.
+- The `installer/` folder is still required for setup and dependency preparation.
 
-[Click here](doc/PLUGINS.md) to learn more about plugins.
+## Troubleshooting
 
-### Creating a test
+### Python module issues
 
-Creating a test is optional but never a bad idea ;).
+If the assistant fails to start because of missing modules, recreate the environment and rerun the installer.
 
-[Click here](doc/TESTING.md) to learn more about testing.
+### Plugin issues
 
-### How to run tests:
+If a command is not appearing, confirm that:
 
- Run `test.sh`
- ```bash
- ./test.sh
- ```
-## Optional Dependencies
+1. The plugin file is present in `custom/` or `jarviscli/plugins/`
+2. The command name matches the plugin decorator
+3. The plugin is included in the current runtime allowlist
 
-- Any pyttsx3 text-to-speech engine (``sapi5, nsss or espeak``) for Jarvis to talk out loud (e.g. Ubuntu do ``sudo apt install espeak``)
-- Portaudio + python-devel packages for voice control
-- ``notify-send`` on Linux if you want to receive *nice* and desktop-notification instead of *ugly* pop up windows (e.g. Ubuntu do ``sudo apt install libnotify-bin``)
-- ``ffmpeg`` if you want ``music`` to download songs as .mp3 instead of .webm
+## Support
 
-## Docker
+For questions or updates, use the repository at:
 
-Run with docker (docker needs to be installed and running):
-
-```
-[sudo] make build_docker
-[sudo] make run_docker
-```
-
-## Authors
-
- **sukeesh**
-
-See also the list of [contributors](https://github.com/Jatin-garg22/jarvis-ai-assistant/graphs/contributors) who have participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- https://github.com/Jatin-garg22/jarvis-ai-assistant.git
