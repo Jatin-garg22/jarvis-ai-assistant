@@ -1,17 +1,34 @@
+import os
+
 import nltk
 from nltk.corpus import wordnet
 from plugin import plugin
 
-nltk.data.path.append("jarviscli/data/ntlk")
+NLTK_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "nltk"))
+nltk.data.path.append(NLTK_DIR)
 
 
-@plugin('dictionary')
+def ensure_wordnet_data():
+    try:
+        nltk.data.find("corpora/wordnet")
+        return
+    except LookupError:
+        nltk.download("wordnet", download_dir=NLTK_DIR)
+
+
+@plugin("dictionary")
 def dictionary(jarvis, s):
     """
     Get meaning, synonym and antonym of any word
     """
+    try:
+        ensure_wordnet_data()
+    except Exception:
+        jarvis.say("Dictionary data is unavailable. Please install NLTK wordnet data or check your internet connection.")
+        return
+
     if len(s) == 0:
-        jarvis.say('\nEnter word')
+        jarvis.say("\nEnter word")
         word = jarvis.input()
     else:
         word = s
@@ -23,15 +40,14 @@ def dictionary(jarvis, s):
 
     synonyms, antonyms = build_datasets(jarvis, word, syns)
 
-    jarvis.say('\nSynonyms:\n' + ", ".join(synonyms))
-    jarvis.say('\nAntonyms:\n' + ", ".join(antonyms))
+    jarvis.say("\nSynonyms:\n" + ", ".join(synonyms))
+    jarvis.say("\nAntonyms:\n" + ", ".join(antonyms))
 
-    # detail loop
     def input_detail_id():
         jarvis.say("")
         synlen = len(syns)
         detail_id = jarvis.input("Details of meaning (1-{}): ? ".format(synlen))
-        if detail_id == '':
+        if detail_id == "":
             return None
 
         try:
@@ -62,9 +78,10 @@ def dictionary(jarvis, s):
 
         detail_id = input_detail_id()
 
+
 def present_results(jarvis, synonyms, antonyms, detail_id, meaning, examples):
-    jarvis.say('')
-    jarvis.say('== {}. =='.format(detail_id))
+    jarvis.say("")
+    jarvis.say("== {}. ==".format(detail_id))
     jarvis.say("Meaning  : {}".format(meaning.definition()))
     if len(synonyms) > 0:
         jarvis.say("Synonyms : {}".format(", ".join(synonyms)))
@@ -75,6 +92,7 @@ def present_results(jarvis, synonyms, antonyms, detail_id, meaning, examples):
             jarvis.say("Examples : {}".format(examples[0]))
         else:
             jarvis.say("Examples :\n-{}".format("\n- ".join(examples)))
+
 
 def build_datasets(jarvis, word, syns):
     synonyms = set()
@@ -90,4 +108,4 @@ def build_datasets(jarvis, word, syns):
                 synonyms.add(synonym.name())
             for antonym in synonym.antonyms():
                 antonyms.add(antonym.name())
-    return synonyms,antonyms
+    return synonyms, antonyms

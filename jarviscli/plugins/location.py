@@ -1,29 +1,34 @@
-import json
-
 import requests
 
 from plugin import plugin, require
 
 
 @require(network=True)
-@plugin('location')
+@plugin("location")
 def location(jarvis, s):
     """It gives you your current location"""
-    send_url = "http://api.ipstack.com/check?access_key=aafa3f03dc42cd4913a79fd2d9ce514d"
-    geo_req = requests.get(send_url)
-    geo_json = json.loads(geo_req.text)
-    latitude = geo_json['latitude']
-    latitude = str(latitude)
-    longitude = geo_json['longitude']
-    longitude = str(longitude)
-    city = geo_json['city']
-    continent_name = geo_json['continent_name']
-    country_name = geo_json['country_name']
-    pin = geo_json['zip']
-    pin = str(pin)
-    jarvis.say(' is your latitude', latitude)
-    jarvis.say(' is your longitude', longitude)
-    jarvis.say(' is your city', city)
-    jarvis.say(' is your country', country_name)
-    jarvis.say(' is your continent', continent_name)
-    jarvis.say(' is your pin code', pin)
+    send_url = "https://ipapi.co/json/"
+
+    try:
+        geo_req = requests.get(send_url, timeout=10)
+        geo_req.raise_for_status()
+        geo_json = geo_req.json()
+    except requests.RequestException:
+        jarvis.say("Could not fetch your location right now. Please try again later.")
+        return
+
+    latitude = geo_json.get("latitude", "unknown")
+    longitude = geo_json.get("longitude", "unknown")
+    city = geo_json.get("city", "unknown")
+    region = geo_json.get("region", "")
+    country = geo_json.get("country_name", geo_json.get("country", "unknown"))
+    postal = geo_json.get("postal", geo_json.get("zip", "unknown"))
+
+    jarvis.say("Latitude: {}".format(latitude))
+    jarvis.say("Longitude: {}".format(longitude))
+    jarvis.say("City: {}".format(city))
+    if region:
+        jarvis.say("Region: {}".format(region))
+    jarvis.say("Country: {}".format(country))
+    if postal:
+        jarvis.say("Postal code: {}".format(postal))
